@@ -3,6 +3,7 @@ import java.util.List;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.security.InvalidParameterException;
 
 public class Sighting {
   int id;
@@ -31,6 +32,12 @@ public class Sighting {
 
   public int getAnimalId() {
     return animalId;
+  }
+
+  public void checkFields() {
+    if(rangerName.equals("") || location.equals("")) {
+      throw new InvalidParameterException("Please fill in all fields before submitting.");
+    }
   }
 
   public static List <Sighting> all() {

@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.security.InvalidParameterException;
 
 public class SightingTest {
 
@@ -105,4 +106,19 @@ public class SightingTest {
     assertNull(Sighting.find(deletedId));
   }
 
+  @Test (expected = InvalidParameterException.class)
+  public void constructor_throwsExceptionIfFieldIsBlank_true() {
+    Sighting testSighting = new Sighting("", "Ranger Rick", 1);
+    testSighting.checkFields();
+  }
+
+  @Test
+  public void fieldChecker_fieldsMustBeCompleted() {
+    Sighting testSighting = new Sighting("", "Ranger Rick", 1);
+    try {
+      testSighting.checkFields();
+      testSighting.save();
+    } catch(InvalidParameterException ipe) {}
+    assertFalse(Sighting.all().contains(testSighting));
+  }
 }
