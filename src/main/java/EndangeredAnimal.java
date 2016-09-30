@@ -8,6 +8,7 @@ public class EndangeredAnimal extends Animal {
     super(name);
     this.health = Health.valueOf(healthString);
     this.age = Age.valueOf(ageString);
+    this.endangered = ENDANGERED;
   }
 
   public String getHealth() {
@@ -17,4 +18,6 @@ public class EndangeredAnimal extends Animal {
   public String getAge() {
     return age.toString();
   }
+
+
 }

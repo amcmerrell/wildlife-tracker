@@ -24,4 +24,10 @@ public class EndangeredAnimalTest {
     EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
     assertEquals("Newborn", testAnimal.getAge());
   }
+
+  @Test
+  public void isEndangered_returnsCorrectBoolean_true() {
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");;
+    assertEquals(true, testAnimal.isEndangered());
+  }
 }

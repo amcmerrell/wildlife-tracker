@@ -4,12 +4,13 @@ import java.util.List;
 public class Animal {
   public int id;
   public String name;
-  //public boolean endangered;
+  public boolean endangered;
 
   public static final boolean ENDANGERED = false;
 
   public Animal(String name) {
     this.name = name;
+    this.endangered = ENDANGERED;
   }
 
   public int getId() {
@@ -21,7 +22,7 @@ public class Animal {
   }
 
   public boolean isEndangered() {
-    return ENDANGERED;
+    return endangered;
   }
 
   public static List <Animal> all() {
