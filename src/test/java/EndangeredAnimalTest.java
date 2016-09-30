@@ -18,4 +18,10 @@ public class EndangeredAnimalTest {
     EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
     assertEquals("Healthy", testAnimal.getHealth());
   }
+
+  @Test
+  public void getAge_returnsAgeAsCorrectString_true() {
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
+    assertEquals("Newborn", testAnimal.getAge());
+  }
 }
