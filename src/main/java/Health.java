@@ -1,3 +1,5 @@
+//Not being utilized, but keeping for reference.
+
 public enum Health {
   HEALTHY("Healthy"), ILL("Ill"), OKAY("Okay");
 
