@@ -9,7 +9,7 @@ public class EndangeredAnimalTest {
 
   @Test
   public void constructor_endangeredAnimalInstantiatesCorrectly_true() {
-    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "healthy", "newborn");
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
     assertEquals(true, testAnimal instanceof EndangeredAnimal);
   }
 }
