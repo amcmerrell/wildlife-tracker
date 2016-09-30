@@ -59,4 +59,12 @@ public class AnimalTest {
     secondAnimal.save();
     assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
   }
+
+  @Test
+  public void update_updatesAnimal_true() {
+    Animal testAnimal = new Animal("Bear");
+    testAnimal.save();
+    testAnimal.update("Brown Bear");
+    assertEquals("Brown Bear", Animal.find(testAnimal.getId()).getName());
+  }
 }

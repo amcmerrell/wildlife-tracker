@@ -52,6 +52,16 @@ public class Animal {
     }
   }
 
+  public void update (String name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET name = :name WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("id", this.id)
+        .addParameter("name", name)
+        .executeUpdate();
+    }
+  }
+
   @Override
   public boolean equals(Object otherAnimal) {
     if (!(otherAnimal instanceof Animal)) {
@@ -62,5 +72,4 @@ public class Animal {
         this.isEndangered() == newAnimal.isEndangered();
     }
   }
-
 }
