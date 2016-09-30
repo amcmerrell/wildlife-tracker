@@ -61,6 +61,17 @@ public class Sighting {
     }
   }
 
+  public void update(String location, String rangerName, int animalId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE sightings SET location = :location, rangerName = :rangerName, animalId = :animalId WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("id", this.id)
+        .addParameter("location", location)
+        .addParameter("rangerName", rangerName)
+        .addParameter("animalId", animalId)
+        .executeUpdate();
+    }
+  }
 
   @Override
     public boolean equals(Object otherSighting) {

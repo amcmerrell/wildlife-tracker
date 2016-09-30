@@ -80,4 +80,18 @@ public class SightingTest {
     assertEquals(Sighting.find(secondSighting.getId()), secondSighting);
   }
 
+  @Test
+  public void update_updatesSighting_true() {
+    Animal firstAnimal = new Animal("Bear");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("Chipmunk");
+    secondAnimal.save();
+    Sighting testSighting = new Sighting("NW Quadrant", "Ranger Rick", firstAnimal.getId());
+    testSighting.save();
+    testSighting.update("S Quadrant", "Ranger Steve", secondAnimal.getId());
+    assertEquals("S Quadrant", Sighting.find(testSighting.getId()).getLocation());
+    assertEquals("Ranger Steve", Sighting.find(testSighting.getId()).getRangerName());
+    assertEquals(secondAnimal.getId(), Sighting.find(testSighting.getId()).getAnimalId());
+  }
+
 }
