@@ -1,6 +1,6 @@
 # _Wildlife Tracker_
 
-#### _Web application that allows users to report and view wildlife sightings, Java and PostgreSQL, Sep. 29, 2016_
+#### _Web application that allows users to report and view wildlife sightings, Java and PostgreSQL, Sep. 30, 2016_
 
 #### By _**Andrew Merrell**_
 
@@ -15,12 +15,13 @@ _This web application intakes user data about wildlife sightings in their area t
 * _Open your terminal application of choice and use "git clone https://github.com/amcmerrell/wildlife-tracker" in the command line._
 
 #### Database Setup
-* _Start postgres in your terminal by entering "postgres", and in another tab, run "psql"._
-* _When psql is successfully running, use "CREATE DATABASE wildlife_tracker;"._
-* _Next, run "\c wildlife_tracker;"_
-* _Once the database is created, enter "CREATE TABLE animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar, endangered boolean);"._
-* _Finally, create the sightings table by entering "CREATE TABLE sightings (id serial PRIMARY KEY, location varchar, dateTime timestamp, rangerName varchar, animalId int);"._
-* _If you would like to run the tests, you can copy this database by running "CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;"._
+_Start postgres in your terminal by entering "postgres", and in another tab, run "psql"._
+_When psql is successfully running, use the following commands to set up the tables:_
+* _CREATE DATABASE wildlife_tracker;_
+* _\c wildlife_tracker;_
+* _CREATE TABLE animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar, endangered boolean);_
+* _CREATE TABLE sightings (id serial PRIMARY KEY, location varchar, dateTime timestamp, rangerName varchar, animalId int);_
+* _CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;_
 
 #### Running the Application
 * _Navigate into the wildlife-tracker folder you created and use "gradle run" in the command line._

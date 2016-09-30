@@ -25,7 +25,7 @@ public class Animal {
     return endangered;
   }
 
-  public static List <Animal> all() {
+  public static List<Animal> all() {
     String sql = "SELECT * FROM animals";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Animal.class);
@@ -38,7 +38,7 @@ public class Animal {
       this.id = (int) con.createQuery(sql, true)
         .throwOnMappingFailure(false)
         .addParameter("name", this.name)
-        .addParameter("endangered", ENDANGERED)
+        .addParameter("endangered", this.endangered)
         .executeUpdate()
         .getKey();
     }
