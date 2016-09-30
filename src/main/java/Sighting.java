@@ -17,6 +17,10 @@ public class Sighting {
     this.animalId = animalId;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public String getLocation() {
     return location;
   }
@@ -45,6 +49,15 @@ public class Sighting {
         .addParameter("animalId", this.animalId)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public static Sighting find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings WHERE id = :id";
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Sighting.class);
     }
   }
 
