@@ -107,7 +107,7 @@ public class SightingTest {
   }
 
   @Test (expected = InvalidParameterException.class)
-  public void constructor_throwsExceptionIfFieldIsBlank_true() {
+  public void checkFields_throwsExceptionIfFieldIsBlank_true() {
     Sighting testSighting = new Sighting("", "Ranger Rick", 1);
     testSighting.checkFields();
   }

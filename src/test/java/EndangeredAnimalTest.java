@@ -2,6 +2,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
 import java.util.List;
+import java.security.InvalidParameterException;
 
 public class EndangeredAnimalTest {
 
@@ -39,6 +40,12 @@ public class EndangeredAnimalTest {
     EndangeredAnimal animalTwo = new EndangeredAnimal("Polar Bear", "Healthy", "Newborn");
     animalTwo.save();
     assertEquals(true, animalOne.equals(animalTwo));
+  }
+
+  @Test (expected = InvalidParameterException.class)
+  public void checkFields_throwsExceptionIfFieldIsBlank_true() {
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "Happy", "Newborn");
+    testAnimal.checkFields();
   }
 
 //Currently failing but displays correct info.

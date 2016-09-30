@@ -1,5 +1,6 @@
 import org.sql2o.*;
 import java.util.List;
+import java.security.InvalidParameterException;
 
 public class EndangeredAnimal extends Animal {
   public String health;
@@ -28,6 +29,18 @@ public class EndangeredAnimal extends Animal {
 
   public String getAge() {
     return age;
+  }
+
+  public void checkFields() {
+    if(name.equals("") ||
+      !health.equals(EndangeredAnimal.HEALTHY) ||
+      !health.equals(EndangeredAnimal.ILL) ||
+      !health.equals(EndangeredAnimal.OKAY) ||
+      !age.equals(EndangeredAnimal.NEWBORN) ||
+      !age.equals(EndangeredAnimal.YOUNG) ||
+      !age.equals(EndangeredAnimal.ADULT)) {
+      throw new InvalidParameterException("Please fill in all fields before submitting.");
+    }
   }
 
   public static List<EndangeredAnimal> allEndangeredAnimals() {
