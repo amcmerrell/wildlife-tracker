@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
-//Create .equals override
+
 public class AnimalTest {
 
   @Rule
