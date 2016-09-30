@@ -14,7 +14,7 @@ public class AnimalTest {
   }
 
   @Test
-  public void getName_getsCorrectName() {
+  public void getName_getsCorrectName_true() {
     Animal testAnimal = new Animal("Bear");
     assertEquals("Bear", testAnimal.getName());
   }

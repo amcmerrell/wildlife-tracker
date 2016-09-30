@@ -14,4 +14,27 @@ public class SightingTest {
     assertEquals(true, testSighting instanceof Sighting);
   }
 
+  @Test
+  public void getLocation_getsCorrectLocation_true() {
+    Animal testAnimal = new Animal("Bear");
+    Sighting testSighting = new Sighting("NW Quadrant", "Ranger Rick", testAnimal.getId());
+    assertEquals("NW Quadrant", testSighting.getLocation());
+  }
+
+  @Test
+  public void getRangerName_getsCorrectRangerName_true() {
+    Animal testAnimal = new Animal("Bear");
+    Sighting testSighting = new Sighting("NW Quadrant", "Ranger Rick", testAnimal.getId());
+    assertEquals("Ranger Rick", testSighting.getRangerName());
+  }
+
+  @Test
+  public void getAnimalId_getsCorrectAnimalId_true() {
+    Animal testAnimal = new Animal("Bear");
+    Sighting testSighting = new Sighting("NW Quadrant", "Ranger Rick", testAnimal.getId());
+    assertEquals(testAnimal.getId(), testSighting.getAnimalId());
+  }
+
+
+
 }
