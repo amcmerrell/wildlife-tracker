@@ -27,7 +27,16 @@ public class EndangeredAnimalTest {
 
   @Test
   public void isEndangered_returnsCorrectBoolean_true() {
-    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");;
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
     assertEquals(true, testAnimal.isEndangered());
+  }
+
+  @Test
+  public void equals_recognizesSameValues_true () {
+    EndangeredAnimal animalOne = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
+    animalOne.save();
+    EndangeredAnimal animalTwo = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
+    animalTwo.save();
+    assertEquals(true, animalOne.equals(animalTwo));
   }
 }
