@@ -35,6 +35,13 @@ public class SightingTest {
     assertEquals(testAnimal.getId(), testSighting.getAnimalId());
   }
 
-
+  @Test
+  public void equals_recognizesSameValues_true () {
+    Animal testAnimal = new Animal("Bear");
+    testAnimal.save();
+    Sighting sightingOne = new Sighting("NW Quadrant", "Ranger Rick", testAnimal.getId());
+    Sighting sightingTwo = new Sighting("NW Quadrant", "Ranger Rick", testAnimal.getId());
+    assertEquals(true, sightingOne.equals(sightingTwo));
+  }
 
 }
