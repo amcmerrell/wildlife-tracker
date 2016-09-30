@@ -10,10 +10,15 @@ public class Animal {
 
   public Animal(String name) {
     this.name = name;
+
   }
 
   public String getName() {
     return name;
+  }
+
+  public boolean isEndangered() {
+    return ENDANGERED;
   }
 
   // public List<Animal> all() {

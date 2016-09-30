@@ -10,13 +10,19 @@ public class AnimalTest {
   @Test
   public void constructor_animalInstantiatesCorrectly_true() {
     Animal testAnimal = new Animal("Bear");
-    assertEquals(true, newAnimal instanceof Animal);
+    assertEquals(true, testAnimal instanceof Animal);
   }
 
   @Test
   public void getName_getsCorrectName() {
     Animal testAnimal = new Animal("Bear");
-    assertEquals("Bear", newAnimal.getName());
+    assertEquals("Bear", testAnimal.getName());
+  }
+
+  @Test
+  public void isEndangered_returnsCorrectBoolean_true() {
+    Animal testAnimal = new Animal("Bear");
+    assertEquals(false, testAnimal.isEndangered());
   }
 
   // @Test
@@ -32,7 +38,7 @@ public class AnimalTest {
   // @Test
   // public void save_successfullyAddsAnimalToDatabase_True() {
   //   Animal testAnimal = new Animal("Bear");
-  //   newAnimal.save();
-  //   assertTrue(Animal.all().get(0).equals(testMonster));
+  //   testAnimal.save();
+  //   assertTrue(Animal.all().get(0).equals(testAnimal));
   // }
 }
