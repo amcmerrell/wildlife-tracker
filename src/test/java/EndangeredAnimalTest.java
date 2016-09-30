@@ -12,4 +12,10 @@ public class EndangeredAnimalTest {
     EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
     assertEquals(true, testAnimal instanceof EndangeredAnimal);
   }
+
+  @Test
+  public void getHealth_returnsHealthAsCorrectString_true() {
+    EndangeredAnimal testAnimal = new EndangeredAnimal("Polar Bear", "HEALTHY", "NEWBORN");
+    assertEquals("Healthy", testAnimal.getHealth());
+  }
 }
