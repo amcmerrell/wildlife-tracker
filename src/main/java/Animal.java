@@ -32,6 +32,13 @@ public class Animal {
     }
   }
 
+  public static List<Animal> allNormal() {
+    String sql = "SELECT * FROM animals WHERE endangered = false";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Animal.class);
+    }
+  }
+
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO animals (name, endangered) VALUES (:name, :endangered)";
