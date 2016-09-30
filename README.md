@@ -16,11 +16,11 @@ _This web application intakes user data about wildlife sightings in their area t
 
 #### Database Setup
 * _Start postgres in your terminal by entering "postgres", and in another tab, run "psql"._
-* _When psql is successfully running, use "CREATE DATABASE hair_salon;"._
-* _Next, run "\c hair_salon;"_
+* _When psql is successfully running, use "CREATE DATABASE wildlife_tracker;"._
+* _Next, run "\c wildlife_tracker;"_
 * _Once the database is created, enter "CREATE TABLE animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar, endangered boolean);"._
-* _Finally, create the sightings table by entering "CREATE TABLE sightings (id serial PRIMARY KEY, location varchar, dateTime timestanp, rangerName varchar, animalId int);"._
-* _If you would like to run the tests, you can copy this database by running "CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;"._
+* _Finally, create the sightings table by entering "CREATE TABLE sightings (id serial PRIMARY KEY, location varchar, dateTime timestamp, rangerName varchar, animalId int);"._
+* _If you would like to run the tests, you can copy this database by running "CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;"._
 
 #### Running the Application
 * _Navigate into the wildlife-tracker folder you created and use "gradle run" in the command line._
