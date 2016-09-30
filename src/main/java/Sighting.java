@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 
 public class Sighting {
   int id;
-  Timestamp date;
+  Timestamp dateTime;
   String location;
   String rangerName;
   int animalId;
@@ -27,6 +27,25 @@ public class Sighting {
 
   public int getAnimalId() {
     return animalId;
+  }
+
+  public static List <Sighting> all() {
+    String sql = "SELECT * FROM sightings";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Sighting.class);
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO sightings (dateTime, location, rangerName, animalId) VALUES (now(), :location, :rangerName, :animalId)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("location", this.location)
+        .addParameter("rangerName", this.rangerName)
+        .addParameter("animalId", this.animalId)
+        .executeUpdate()
+        .getKey();
+    }
   }
 
 
