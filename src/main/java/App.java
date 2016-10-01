@@ -32,6 +32,22 @@ public class App {
         request.session().attribute("message", ipe.getMessage());
         response.redirect("/badrequest");
       }
+      response.redirect("/animals/" + newAnimal.getId());
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/animals/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String animalName = request.queryParams("animal-name");
+      Animal newAnimal = new Animal(animalName);
+      try {
+        newAnimal.checkFields();
+        newAnimal.save();
+      } catch(InvalidParameterException ipe) {
+        request.session().attribute("message", ipe.getMessage());
+        response.redirect("/badrequest");
+      }
+      response.redirect("/animals/" + newAnimal.getId());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -39,11 +55,22 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
       if(animal.isEndangered()) {
-        animal = (EndangeredAnimal) animal;
+        animal = (EndangeredAnimal) EndangeredAnimal.findEndangeredAnimal(Integer.parseInt(request.params(":id")));
       }
       model.put("animal", animal);
       model.put("sightings", animal.getSightings());
-      model.put("template", "templates/animal-instances.vtl");
+      model.put("template", "templates/animal-sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/animals/:id/sightings/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String sightingRanger = request.queryParams("sighting-ranger");
+      int sightingAnimalId = Integer.parseInt(request.queryParams("sighting-animal-id"));
+      String sightingLocation = request.queryParams("sighting-location");
+      Sighting newSighting = new Sighting(sightingLocation, sightingRanger, sightingAnimalId);
+      newSighting.save();
+      response.redirect("/animals/" + newSighting.getAnimalId());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

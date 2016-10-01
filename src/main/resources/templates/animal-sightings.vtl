@@ -1,0 +1,32 @@
+<h2>$animal.getName()</h2>
+#if($animal.isEndangered())
+  <p><strong>Status: </strong>Endangered</p>
+  <p><strong>Health: </strong>$animal.getHealth()</p>
+  <p><strong>Age: </strong>$animal.getAge()</p>
+#else
+  <p><strong>Status: </strong>not endangered</p>
+#end
+#if($sightings.size() > 0)
+  <h3>Sightings</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Reported</th>
+        <th>Ranger Name</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      #foreach($sighting in $sightings)
+        <tr>
+          <td>$sighting.getFormattedDate()</td>
+          <td>$sighting.getRangerName()</td>
+          <td>$sighting.getLocation()</td>
+        </tr>
+      #end
+    </tbody>
+  </table>
+#else
+  <h3>No Sightings</h3>
+
+#end

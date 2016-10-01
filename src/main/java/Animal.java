@@ -1,16 +1,15 @@
 import org.sql2o.*;
 import java.util.List;
+import java.security.InvalidParameterException;
 
 public class Animal {
   public int id;
   public String name;
   public boolean endangered;
 
-  public static final boolean ENDANGERED = false;
-
   public Animal(String name) {
     this.name = name;
-    this.endangered = ENDANGERED;
+    this.endangered = false;
   }
 
   public int getId() {
@@ -23,6 +22,12 @@ public class Animal {
 
   public boolean isEndangered() {
     return endangered;
+  }
+
+  public void checkFields() {
+    if(name.equals("")) {
+      throw new InvalidParameterException("Please fill in all fields before submitting.");
+    }
   }
 
   public static List<Animal> all() {

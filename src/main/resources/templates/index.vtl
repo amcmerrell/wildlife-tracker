@@ -26,7 +26,7 @@
       <tbody>
         #foreach($normalAnimal in $normalAnimals)
           <tr>
-            <td><a href="/animals/$normalAnimal.getId()">$animal.getName()</a></td>
+            <td><a href="/animals/$normalAnimal.getId()">$normalAnimal.getName()</a></td>
           </tr>
         #end
       </tbody>
@@ -72,12 +72,12 @@
     </form>
   </div>
   <div class="col-md-4">
-    <h3>Step 3: Add a new animal sighting.</h3>
+    <h3>Step 3: Add a new sighting.</h3>
     <hr>
-    <form action='/sightings/new' method='post'>
+    <form action='/animals/sighting-animal-id/sightings/new' method='post'>
       <div class="form-group">
         <label for="sighting-ranger">Enter your name:</label>
-        <input id="sighting-name" name="sighting-name" class="form-control" type="text">
+        <input id="sighting-ranger" name="sighting-ranger" class="form-control" type="text">
       </div>
 
       <div class="form-group">

@@ -34,10 +34,19 @@ public class Sighting {
     return animalId;
   }
 
+  public Timestamp getDateTime() {
+    return dateTime;
+  }
+
   public void checkFields() {
     if(rangerName.equals("") || location.equals("")) {
       throw new InvalidParameterException("Please fill in all fields before submitting.");
     }
+  }
+
+  public String getFormattedDate(){
+    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd yyyy hh:mm a");
+    return formatter.format(dateTime);
   }
 
   public static List <Sighting> all() {

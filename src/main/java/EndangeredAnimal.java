@@ -6,8 +6,6 @@ public class EndangeredAnimal extends Animal {
   public String health;
   public String age;
 
-  public static final boolean ENDANGERED = true;
-
   public static final String HEALTHY = "Healthy";
   public static final String ILL = "Ill";
   public static final String OKAY = "Okay";
@@ -20,7 +18,7 @@ public class EndangeredAnimal extends Animal {
     super(name);
     this.health = health;
     this.age = age;
-    this.endangered = ENDANGERED;
+    this.endangered = true;
   }
 
   public String getHealth() {
@@ -31,6 +29,7 @@ public class EndangeredAnimal extends Animal {
     return age;
   }
 
+  @Override
   public void checkFields() {
     if(name.equals("") ||
       ((!health.equals(EndangeredAnimal.HEALTHY)) &&
@@ -50,6 +49,17 @@ public class EndangeredAnimal extends Animal {
       return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(EndangeredAnimal.class);
     }
   }
+
+  public static EndangeredAnimal findEndangeredAnimal(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id = :id";
+      return con.createQuery(sql)
+        .throwOnMappingFailure(false)
+        .addParameter("id", id)
+        .executeAndFetchFirst(EndangeredAnimal.class);
+    }
+  }
+
   @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
