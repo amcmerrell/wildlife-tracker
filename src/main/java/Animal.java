@@ -61,6 +61,15 @@ public class Animal {
     }
   }
 
+  public List<Sighting> getSightings() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings WHERE animalId = :animalId";
+      return con.createQuery(sql)
+        .addParameter("animalId", this.getId())
+        .executeAndFetch(Sighting.class);
+    }
+  }
+
   public void update(String name) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET name = :name WHERE id = :id";

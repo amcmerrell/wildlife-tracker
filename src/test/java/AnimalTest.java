@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.util.List;
 
 public class AnimalTest {
 
@@ -75,5 +76,19 @@ public class AnimalTest {
     int deletedId = testAnimal.getId();
     testAnimal.delete();
     assertNull(Animal.find(deletedId));
+  }
+
+  @Test
+  public void getSightings_returnsCorrectSightings_true() {
+    Animal firstAnimal = new Animal("Bear");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("Chipmunk");
+    secondAnimal.save();
+    Sighting firstSighting = new Sighting("NW Quadrant", "Ranger Rick", firstAnimal.getId());
+    firstSighting.save();
+    Sighting secondSighting = new Sighting("S Quadrant", "Ranger Steve", secondAnimal.getId());
+    secondSighting.save();
+    List<Sighting> testList = firstAnimal.getSightings();
+    assertTrue(!(testList.contains(secondSighting))  && testList.contains(firstSighting));
   }
 }
