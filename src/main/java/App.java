@@ -37,7 +37,12 @@ public class App {
 
     get("/animals/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
+      Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
+      if(animal.isEndangered()) {
+        animal = (EndangeredAnimal) animal;
+      }
+      model.put("animal", animal);
+      model.put("sightings", animal.getSightings());
       model.put("template", "templates/animal-instances.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
