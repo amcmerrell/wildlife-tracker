@@ -20,5 +20,20 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/animals/new-endangered", (request, response) -> {
+      String animalName = request.queryParams("animal-name");
+      String animalHealth = request.queryParams("animal-health");
+      String animalAge = request.queryParams("animal-age");
+      EndangeredAnimal newAnimal = new EndangeredAnimal(animalName, animalHealth, animalAge);
+      try {
+        newAnimal.checkFields();
+        newAnimal.save();
+      } catch(InvalidParameterException ipe) {
+        request.session().attribute("message", ipe.getMessage());
+        response.redirect("/badrequest");
+      }
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }
