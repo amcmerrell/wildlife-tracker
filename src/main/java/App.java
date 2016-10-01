@@ -19,6 +19,13 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/badrequest", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("message", request.session().attribute("message"));
+      model.put("template", "templates/bad-request.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/animals/new-endangered", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String animalName = request.queryParams("animal-name");
@@ -69,7 +76,13 @@ public class App {
       int sightingAnimalId = Integer.parseInt(request.queryParams("sighting-animal-id"));
       String sightingLocation = request.queryParams("sighting-location");
       Sighting newSighting = new Sighting(sightingLocation, sightingRanger, sightingAnimalId);
-      newSighting.save();
+      try {
+        newSighting.checkFields();
+        newSighting.save();
+      } catch (InvalidParameterException ipe) {
+        request.session().attribute("message", ipe.getMessage());
+        response.redirect("/badrequest");
+      }
       response.redirect("/animals/" + newSighting.getAnimalId());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
